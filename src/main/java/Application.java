@@ -25,31 +25,4 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-    @Bean
-    @ConfigurationProperties("app.datasource")
-    public DataSource getDataSource(){
-        return dataSourceProperties().initializeDataSourceBuilder().type(DriverManagerDataSource.class).build();
-    }
-
-    @Bean
-    @Primary
-    @ConfigurationProperties("app.datasource")
-    public DataSourceProperties dataSourceProperties(){
-        return new DataSourceProperties();
-    }
-
-    @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder){
-
-        Map<String,String> properties = new HashMap<>();
-        properties.put("hibernate.hbm2ddl.auto","create");
-
-        return builder.dataSource(getDataSource())
-                .properties(properties)
-                .packages().persistenceUnit("series").build();
-
-    }
-
-
-
 }
