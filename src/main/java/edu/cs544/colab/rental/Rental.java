@@ -6,7 +6,7 @@ import javax.persistence.OneToOne;
 import edu.cs544.colab.client.Client;
 
 @Entity
-public class Rental extends BaseEntity{
+public class Rental extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 	private Date rentFrom;
 	private Date rentTo; 

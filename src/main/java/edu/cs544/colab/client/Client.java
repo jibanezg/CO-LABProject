@@ -2,20 +2,14 @@ package edu.cs544.colab.client;
 
 import java.util.List;
 
-public class Client {
+import edu.cs544.colab.rental.BaseEntity;
+import edu.cs544.colab.rental.Rental;
+
+public class Client extends BaseEntity {
 	
-	String clientId;
 	String name;
 	String address;
 	List<Rental> rentals;
-	
-	public String getClientId() {
-		return clientId;
-	}
-	
-	public void setClientId(String id) {
-		this.clientId = id;
-	}
 	
 	public String getName() {
 		return name;
