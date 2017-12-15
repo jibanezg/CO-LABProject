@@ -1,5 +1,6 @@
 package edu.cs544.colab;
 
+import edu.cs544.colab.client.Client;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,7 +21,7 @@ import java.util.Map;
 /**
  * Created by Grimg on 12/11/2017.
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages ={ "edu.cs544.colab.*"})
 @EnableJpaRepositories
 public class Application {
 
@@ -30,29 +31,27 @@ public class Application {
 
     @Bean
     @ConfigurationProperties("app.datasource")
-    public DataSource getDataSource(){
+    public DataSource getDataSource() {
         return dataSourceProperties().initializeDataSourceBuilder().type(DriverManagerDataSource.class).build();
     }
 
     @Bean
     @Primary
     @ConfigurationProperties("app.datasource")
-    public DataSourceProperties dataSourceProperties(){
+    public DataSourceProperties dataSourceProperties() {
         return new DataSourceProperties();
     }
 
-/*//    @Bean
-//    public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder){
-//
-//        Map<String,String> properties = new HashMap<>();
-//        properties.put("hibernate.hbm2ddl.auto","create");
-//
-//        return builder.dataSource(getDataSource())
-//                .properties(properties)
-//                .packages().persistenceUnit("series").build();
-//
-//    }
-*/
+    @Bean
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder) {
 
+        Map<String, String> properties = new HashMap<>();
+        properties.put("hibernate.hbm2ddl.auto", "create");
+
+        return builder.dataSource(getDataSource())
+                .properties(properties)
+                .packages(Client.class).persistenceUnit("COLABProject").build();
+
+    }
 
 }
