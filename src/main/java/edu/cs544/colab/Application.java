@@ -1,3 +1,6 @@
+package edu.cs544.colab;
+
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
@@ -17,7 +20,7 @@ import java.util.Map;
 /**
  * Created by Grimg on 12/11/2017.
  */
-@SpringBootApplication(scanBasePackages ={ "series.mum.*"})
+@SpringBootApplication
 @EnableJpaRepositories
 public class Application {
 
@@ -38,18 +41,18 @@ public class Application {
         return new DataSourceProperties();
     }
 
-    @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder){
-
-        Map<String,String> properties = new HashMap<>();
-        properties.put("hibernate.hbm2ddl.auto","create");
-
-        return builder.dataSource(getDataSource())
-                .properties(properties)
-                .packages().persistenceUnit("series").build();
-
-    }
-
+/*//    @Bean
+//    public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder){
+//
+//        Map<String,String> properties = new HashMap<>();
+//        properties.put("hibernate.hbm2ddl.auto","create");
+//
+//        return builder.dataSource(getDataSource())
+//                .properties(properties)
+//                .packages().persistenceUnit("series").build();
+//
+//    }
+*/
 
 
 }
