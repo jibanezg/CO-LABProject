@@ -1,3 +1,6 @@
+package edu.cs544.colab;
+
+import edu.cs544.colab.client.Client;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
@@ -17,7 +20,7 @@ import java.util.Map;
 /**
  * Created by Grimg on 12/11/2017.
  */
-@SpringBootApplication(scanBasePackages ={ "series.mum.*"})
+@SpringBootApplication(scanBasePackages ={ "edu.cs544.colab.*"})
 @EnableJpaRepositories
 public class Application {
 
@@ -46,7 +49,7 @@ public class Application {
 
         return builder.dataSource(getDataSource())
                 .properties(properties)
-                .packages().persistenceUnit("series").build();
+                .packages(Client.class).persistenceUnit("COLABProject").build();
 
     }
 
