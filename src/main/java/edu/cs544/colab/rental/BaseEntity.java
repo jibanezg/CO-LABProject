@@ -2,12 +2,14 @@ package edu.cs544.colab.rental;
 
 import java.io.Serializable;
 import java.util.Date;
-
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-public class BaseEntity implements Serializable{
+import javax.persistence.MappedSuperclass;
+@MappedSuperclass 
+public abstract class BaseEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
+	@GeneratedValue
 	private int id;
 	private Date creationDate;
 	
