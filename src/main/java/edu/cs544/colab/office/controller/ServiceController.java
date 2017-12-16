@@ -1,9 +1,10 @@
-package office.cs544.colab.controller;
+package edu.cs544.colab.office.controller;
 
-import office.cs544.colab.domain.Office;
-import office.cs544.colab.service.IOfficeService;
+import edu.cs544.colab.office.domain.Office;
+import edu.cs544.colab.office.service.IOfficeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -20,7 +21,7 @@ public class ServiceController {
     private IOfficeService officeService;
 
     @PostMapping(value = "/office", consumes = "application/json")
-    public void publishOffice(@RequestBody @NotNull @Valid Office office){
+    public void publishOffice(@RequestBody @NotNull @Valid Office office, BindingResult result){
         officeService.publishOffice(office);
     }
 }

@@ -1,6 +1,6 @@
-package office.cs544.colab.dao;
+package edu.cs544.colab.office.dao;
 
-import office.cs544.colab.domain.Office;
+import edu.cs544.colab.office.domain.Office;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,6 @@
-package office.cs544.colab.service;
+package edu.cs544.colab.office.service;
 
-import office.cs544.colab.domain.Office;
+import edu.cs544.colab.office.domain.Office;
 
 /**
  * Created by Grimg on 12/15/2017.
