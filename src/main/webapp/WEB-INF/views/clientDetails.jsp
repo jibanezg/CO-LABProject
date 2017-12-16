@@ -24,7 +24,8 @@
 			<ul>
 				<c:forEach var="rental" items="${client.rentals}">
 					<li><label>Rental Id:</label><input type="text" name="rentalid" value="${rental.id}" />
-					<label>Description:</label><input type="text" name="rentaldescr" value="${rental.description}" />
+					<label>Rental Description:</label>
+					<input type="text" name="rentaldescr value="${rental.description}" />
 					</li>
 				</c:forEach>
 			</ul>
@@ -33,7 +34,10 @@
 			Billing info:<br>
 			<label>Billing:</label><input type="text" name="billing" value="${client.price}" />
 		</div>
-		<input type="submit" value="add" />
+		<input type="submit" value="update"/>
+	</form>
+	<form action="delete?clientId=${client.id}" method="post">
+		<button type="submit">Delete</button>
 	</form>
 </body>
 </html>
