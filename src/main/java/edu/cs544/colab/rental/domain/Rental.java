@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-import edu.cs544.colab.client.Client;
+import edu.cs544.colab.client.domain.Client;
 import edu.cs544.colab.rental.BaseEntity;
 
 @Entity

@@ -1,8 +1,8 @@
-package edu.cs544.colab.service;
+package edu.cs544.colab.client.service;
 
 import java.util.Collection;
 
-import edu.cs544.colab.client.Client;
+import edu.cs544.colab.client.domain.Client;
 
 public interface IClientService {
 	public void addClient(Client client);

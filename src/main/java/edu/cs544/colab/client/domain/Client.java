@@ -1,4 +1,4 @@
-package edu.cs544.colab.client;
+package edu.cs544.colab.client.domain;
 
 import java.util.List;
 
