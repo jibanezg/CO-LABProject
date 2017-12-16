@@ -5,10 +5,16 @@ import java.util.List;
 import edu.cs544.colab.rental.BaseEntity;
 import edu.cs544.colab.rental.domain.Rental;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Client extends BaseEntity {
 	
 	String name;
 	String address;
+	
+	@OneToMany // (mappedBy="rental.id")
 	List<Rental> rentals;
 	
 	public String getName() {
