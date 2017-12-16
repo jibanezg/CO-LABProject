@@ -18,6 +18,8 @@ public class Rental extends BaseEntity{
 	private Client client;
 	@OneToOne
 	private Contract contract;
+	@ManyToOne
+	private Office office;
 	
 	public Date getRentFrom() {
 		return rentFrom;

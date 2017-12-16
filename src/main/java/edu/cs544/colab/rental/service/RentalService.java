@@ -4,4 +4,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface RentalService {
+	
+	boolean checkOffice(int officeId);
 }

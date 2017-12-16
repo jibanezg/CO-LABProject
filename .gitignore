@@ -178,5 +178,7 @@ dist/
 nbdist/
 .nb-gradle/
 
+target/
+transaction-logs/
 # End of https://www.gitignore.io/api/eclipse,netbeans,executable,intellij+iml,intellij+all
 /target/

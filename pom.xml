@@ -7,7 +7,7 @@
 	<artifactId>CO-LABProject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
-	<name>imbdmock</name>
+	<name>COLABProject</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
