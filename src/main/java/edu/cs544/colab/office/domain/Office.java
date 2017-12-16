@@ -1,15 +1,14 @@
-package office.cs544.colab.domain;
+package edu.cs544.colab.office.domain;
 
-import equipment.cs544.colab.domain.Equipment;
+import edu.cs544.colab.equipment.domain.Equipment;
+import edu.cs544.colab.office.domain.Location;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -29,7 +28,13 @@ public class Office {
     private Location location;
     private String description;
     private String status;
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @JoinColumn(name = "officeId")
     private List<Equipment> equipment;
+
+    public Office(){
+        equipment = new LinkedList<>();
+    }
 
     public String getId() {
         return id;

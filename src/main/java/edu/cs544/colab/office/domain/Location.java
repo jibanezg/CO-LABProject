@@ -1,4 +1,4 @@
-package office.cs544.colab.domain;
+package edu.cs544.colab.office.domain;
 
 import org.hibernate.validator.constraints.NotBlank;
 
