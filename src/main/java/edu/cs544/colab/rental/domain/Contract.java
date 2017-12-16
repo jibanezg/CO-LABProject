@@ -1,8 +1,11 @@
-package edu.cs544.colab.rental;
+package edu.cs544.colab.rental.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.OneToOne;
+
+import edu.cs544.colab.rental.BaseEntity;
+import edu.cs544.colab.rental.ContractType;
 @Entity
 public class Contract extends BaseEntity{
 	private static final long serialVersionUID = 1L;

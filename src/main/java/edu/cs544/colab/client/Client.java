@@ -3,7 +3,7 @@ package edu.cs544.colab.client;
 import java.util.List;
 
 import edu.cs544.colab.rental.BaseEntity;
-import edu.cs544.colab.rental.Rental;
+import edu.cs544.colab.rental.domain.Rental;
 
 public class Client extends BaseEntity {
 	
