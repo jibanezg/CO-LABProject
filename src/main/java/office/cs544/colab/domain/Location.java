@@ -1,5 +1,7 @@
 package office.cs544.colab.domain;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.Embeddable;
 
 /**
@@ -8,9 +10,13 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Location {
 
+    @NotBlank
     private String street;
+    @NotBlank
     private String zipCode;
+    @NotBlank
     private String city;
+    @NotBlank
     private String state;
 
     public String getStreet() {

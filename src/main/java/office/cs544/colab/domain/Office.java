@@ -1,11 +1,16 @@
 package office.cs544.colab.domain;
 
+import equipment.cs544.colab.domain.Equipment;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * Created by Grimg on 12/15/2017.
@@ -16,11 +21,15 @@ public class Office {
     @Id @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String id;
+    @Min(value = 1)
     private double price;
     @Embedded
+    @NotNull
+    @Valid
     private Location location;
     private String description;
     private String status;
+    private List<Equipment> equipment;
 
     public String getId() {
         return id;

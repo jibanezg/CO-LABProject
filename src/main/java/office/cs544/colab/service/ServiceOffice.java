@@ -1,5 +1,8 @@
 package office.cs544.colab.service;
 
+import office.cs544.colab.dao.OfficeDAO;
+import office.cs544.colab.domain.Office;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -7,4 +10,14 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ServiceOffice implements IOfficeService{
+
+    @Autowired
+    private OfficeDAO officeDao;
+
+    @Override
+    public void publishOffice(Office office) {
+
+        officeDao.save(office);
+
+    }
 }
