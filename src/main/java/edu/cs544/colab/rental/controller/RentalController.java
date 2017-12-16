@@ -14,7 +14,8 @@ public class RentalController {
 	@Autowired
 	private RentalService rentalService;
 
-	@RequestMapping(name="/checkOffice{id}")
-	private boolean checkOffice(@PathVariable int id) {
-		return rentalService.;}
+	@RequestMapping(name="/isAvailableOffice{id}")
+	private boolean isAvailableOffice(@PathVariable int officeId) {
+		return rentalService.isAvailableOffice(officeId);
+		}
 }

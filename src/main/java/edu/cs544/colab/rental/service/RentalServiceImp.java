@@ -1,10 +1,12 @@
 package edu.cs544.colab.rental.service;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.cs544.colab.rental.Dao.RentalDao;
-import edu.cs544.colab.rental.domain.Rental;
 
 @Service
 public class RentalServiceImp implements RentalService{
@@ -13,10 +15,11 @@ public class RentalServiceImp implements RentalService{
 	
 	
 	@Override
-	public boolean checkOffice(int officeId) {
-		Office office = rentalDao.getObjectById(Office.class, officeId);
-		
-		 false;
+	public boolean isAvailableOffice(int officeId) {
+		//Office office = (Office) rentalDao.getObjectById(Office.class, officeId);
+		Date now = new Date();
+		List<Object> renList = rentalDao.getObjectsByQuery("FROM Rental r where r.rentTo >= "+now+"AND r.office="+officeId);
+		return renList.size()==0 ? true : false;
 	}
 	
 	

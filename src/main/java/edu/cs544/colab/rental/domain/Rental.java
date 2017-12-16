@@ -8,6 +8,7 @@ import javax.persistence.OneToOne;
 
 import edu.cs544.colab.client.Client;
 import edu.cs544.colab.rental.BaseEntity;
+import office.cs544.colab.domain.Office;
 
 @Entity
 public class Rental extends BaseEntity{

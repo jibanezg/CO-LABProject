@@ -1,5 +1,7 @@
 package edu.cs544.colab.rental.Dao;
 
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +22,15 @@ public class RentalDaoImp implements RentalDao{
 	}
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
+	}
+
+
+
+	@Transactional
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> getObjectsByQuery(String query) {
+		return sessionFactory.getCurrentSession().createQuery(query).list();
 	}
 	
 }
