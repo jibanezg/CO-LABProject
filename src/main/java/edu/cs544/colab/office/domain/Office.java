@@ -1,7 +1,8 @@
 package edu.cs544.colab.office.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import edu.cs544.colab.equipment.domain.Equipment;
-import edu.cs544.colab.office.domain.Location;
+import edu.cs544.colab.office.enums.OfficeStatus;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -27,13 +28,18 @@ public class Office {
     @Valid
     private Location location;
     private String description;
-    private String status;
+    @NotNull
+    @Enumerated(value = EnumType.STRING)
+    private OfficeStatus status;
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name = "officeId")
+    @JsonDeserialize()
     private List<Equipment> equipment;
 
     public Office(){
+
         equipment = new LinkedList<>();
+        location = new Location();
     }
 
     public String getId() {
@@ -68,11 +74,19 @@ public class Office {
         this.description = description;
     }
 
-    public String getStatus() {
+    public OfficeStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(OfficeStatus status) {
         this.status = status;
+    }
+
+    public List<Equipment> getEquipment() {
+        return equipment;
+    }
+
+    public void setEquipment(List<Equipment> equipment) {
+        this.equipment = equipment;
     }
 }
