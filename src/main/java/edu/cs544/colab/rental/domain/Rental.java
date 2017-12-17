@@ -11,7 +11,7 @@ import edu.cs544.colab.office.domain.Office;
 import edu.cs544.colab.rental.BaseEntity;
 
 @Entity
-public class Rental extends BaseEntity{
+public class Rental extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 	private Date rentFrom;
 	private Date rentTo; 

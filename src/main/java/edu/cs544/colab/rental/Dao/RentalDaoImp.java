@@ -1,12 +1,14 @@
 package edu.cs544.colab.rental.Dao;
 
 import java.util.List;
-
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+@Repository
 public class RentalDaoImp implements RentalDao{
+	
 	@Autowired
 	private SessionFactory sessionFactory;
 	

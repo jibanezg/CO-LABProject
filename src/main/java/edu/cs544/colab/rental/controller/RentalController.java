@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.cs544.colab.rental.service.RentalService;
 
@@ -18,4 +19,10 @@ public class RentalController {
 	private boolean isAvailableOffice(@PathVariable int officeId) {
 		return rentalService.isAvailableOffice(officeId);
 		}
+	
+	
+	@RequestMapping("/addRental")
+	public String addRental(@RequestParam int clientId,@RequestParam int officeId) {
+		return null;
+	}
 }
