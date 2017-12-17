@@ -7,7 +7,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
  */
 public enum OfficeStatus {
     
-    FOR_LEASING("FOR LEASING");
+    FOR_LEASING("FOR LEASING"),
+    DEFAULT("DEFAULT");
 
     private final String text;
 

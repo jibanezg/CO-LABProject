@@ -28,6 +28,7 @@ public class Office {
     @Valid
     private Location location;
     private String description;
+    @NotNull
     @Enumerated(value = EnumType.STRING)
     private OfficeStatus status;
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
@@ -36,7 +37,9 @@ public class Office {
     private List<Equipment> equipment;
 
     public Office(){
+
         equipment = new LinkedList<>();
+        location = new Location();
     }
 
     public String getId() {
