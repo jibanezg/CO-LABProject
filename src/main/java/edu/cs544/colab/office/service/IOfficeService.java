@@ -9,6 +9,6 @@ import java.util.List;
 public interface IOfficeService <T>{
 
     void publishOffice(T office);
-    List<T> find();
+    List<T> retrieveAllOffice();
 
 }
