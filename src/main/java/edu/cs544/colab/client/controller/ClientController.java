@@ -24,4 +24,10 @@ public class ClientController {
         model.setViewName("clientDetails");
         return model;
 	}
+	
+	@GetMapping(value = "/addClient")
+	public ModelAndView addClient(ModelAndView model) {
+		model.setViewName("addClient");
+		return model;
+	}
 }
