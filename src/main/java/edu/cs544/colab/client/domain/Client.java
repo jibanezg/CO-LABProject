@@ -2,6 +2,8 @@ package edu.cs544.colab.client.domain;
 
 import java.util.List;
 
+import edu.cs544.colab.office.domain.Location;
+import edu.cs544.colab.office.domain.Office;
 import edu.cs544.colab.rental.BaseEntity;
 import edu.cs544.colab.rental.domain.Rental;
 
@@ -11,11 +13,13 @@ import javax.persistence.OneToMany;
 @Entity
 public class Client extends BaseEntity {
 	
-	String name;
-	String address;
+	private String name;
+	private Location address;
+	private Billing billInfo;
+	
 	
 	@OneToMany // (mappedBy="rental.id")
-	List<Rental> rentals;
+	private List<Office> rentals;
 	
 	public String getName() {
 		return name;
@@ -23,21 +27,28 @@ public class Client extends BaseEntity {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getAddress() {
+	public Location getAddress() {
 		return address;
 	}
-	public void setAddress(String address) {
+	public void setAddress(Location address) {
 		this.address = address;
 	}
-	public List<Rental> getRentals() {
+	public List<Office> getRentals() {
 		return rentals;
 	}
-	public void setRentals(List<Rental> rentals) {
+	public void setRentals(List<Office> rentals) {
 		this.rentals = rentals;
 	}
 	
-	public void addRental(Rental rental) {
+	public void addRental(Office rental) {
 		this.rentals.add(rental);
 	}
+	public Billing getBillInfo() {
+		return billInfo;
+	}
+	public void setBillInfo(Billing billInfo) {
+		this.billInfo = billInfo;
+	}
 
+	
 }
