@@ -7,7 +7,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -15,8 +14,6 @@ import edu.cs544.colab.rental.domain.Rental;
 import edu.cs544.colab.rental.service.RentalService;
 
 @Controller
-//@EnableWebMvc
-//@RequestMapping(name="/rental")
 public class RentalController {
 	
 	@Autowired
@@ -31,26 +28,21 @@ public class RentalController {
 		}
 	
 	
-	 @PostMapping(value = "/rents", consumes = {MediaType.APPLICATION_JSON_VALUE})
+	 /*@PostMapping(value = "/rents", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	 public String addRental(@RequestBody Rental rental , BindingResult resul) {
 		return rentalService.addRental(rental);
-	}
+	}*/
 	 
 	 @PostMapping(value = "/rents", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-	 public void publishOfficeAsFormUrlEncoded(Rental rental , BindingResult result){
+	 public String addRental(Rental rental , BindingResult result){
+		 return rentalService.addRental(rental);
 	    }
 	 
-	/*@RequestMapping("/rental")
-	public String map() {
-		System.out.println("dsds");
-		return "/generic.html";
-	}*/
-	
 	@GetMapping(value ="/AddRental")
-    public String showRental(ModelAndView model){
+    public ModelAndView showRental(ModelAndView model){
         model.addObject(getRental());
         model.setViewName("addRental");
-        return "rental";
+        return model;
     }
 
 

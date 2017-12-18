@@ -2,6 +2,7 @@ package edu.cs544.colab.rental.domain;
 
 import java.util.Date;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -20,8 +21,8 @@ public class Rental extends BaseEntity {
 	private Date rentTo; 
 	@ManyToOne
 	private Client client;
-	@OneToOne
-	private Contract contract = new Contract();
+	@Embedded
+	private Contract contract;
 	@ManyToOne
 	private Office office;
 	

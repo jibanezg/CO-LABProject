@@ -11,7 +11,7 @@ public abstract class BaseEntity implements Serializable{
 	@Id
 	@GeneratedValue
 	private int id;
-	private Date creationDate;
+	private Date creationDate = new Date();
 	
 	public int getId() {
 		return id;

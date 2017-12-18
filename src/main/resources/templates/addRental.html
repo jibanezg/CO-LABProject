@@ -5,16 +5,16 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<h1>Form</h1>
+<h1>Rental Process</h1>
  <form action="#" th:action="@{/rents}" th:object="${rental}" method="post">
-    <p>Rent from: <input type="text" th:field="*{rentFrom}" /></p>   
+    <p>Rent from: <input type="datetime-local"  class="datetime" th:field="*{rentFrom}"
+			required="required" pattern="yyyy-MM-dd'T'HH:mm:ss.SSS"/> </p>
     <p>Rent to: <input type="text" th:field="*{rentTo}" /></p>
     <p>Security Deposit: <input type="text" th:field="*{contract.securityDeposit}" /></p>
-    <p>Type of contract: <input type="text" th:field="*{contract.type}" /></p>
-    <select th:field="*{type}">
+    <p>Type of contract: </p>
+    <select th:field="*{contract.type}">
         <option th:each="optionStatus : ${T(edu.cs544.colab.rental.ContractType).values()}" th:value="${optionStatus.name()}" th:text="${optionStatus.toString()}"></option>
-    </select>  -->
- 
+    </select>  
     <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p> 
  </form> 
 </body>
