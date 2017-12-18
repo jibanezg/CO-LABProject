@@ -1,21 +1,21 @@
+<!DOCTYPE html>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title>Add a new Client</title>
 </head>
 <body>
 	<form action="../client/${client.id}" method="post">
 		<div>
-			Name:<br> <input type="text" name="name" value="${client.name}" />
+			Name: <input type="text" name="name" value="${client.name}" />
 		</div>
 		<div>
-			Address: <br>
-			<label>Street:</label><input type="text" name="street" value="${client.address.street}" /> <br> 
+			Address: <br/>
+			<label>Street:</label><input type="text" name="street" value="${client.address.street}" /> <br/> 
 			<label>City:</label><input type="text" name="city" value="${client.address.city}" /> 
 			<label>State:</label><input type="text" name="state" value="${client.address.state}" /> 
-			<label>ZipCode:</label><input type="text" name="zipcode" value="${client.address.zipCode}" /> <br>
+			<label>ZipCode:</label><input type="text" name="zipcode" value="${client.address.zipCode}" /> <br/>
 		</div>
 		<div>
 			Active Rentals:
@@ -28,7 +28,7 @@
 			</ul>
 		</div>
 		<div>
-			Billing info:<br>
+			Billing info:<br/>
 			<label>Billing:</label><input type="text" name="billing" value="${client.price}" />
 		</div>
 		<input type="submit" value="add" />
