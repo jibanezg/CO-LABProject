@@ -13,7 +13,7 @@ import java.util.List;
  * Created by Grimg on 12/15/2017.
  */
 @Service
-public class ServiceOffice<T> implements IOfficeService<T> {
+public class OfficeService<T> implements IOfficeService<T> {
 
     @Autowired
     private OfficeDAO officeDao;

@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
  * Created by Grimg on 12/15/2017.
  */
 @Controller
-public class ServiceController {
+public class OfficeController {
 
     @Autowired
     private IOfficeService officeService;
