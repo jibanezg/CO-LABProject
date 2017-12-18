@@ -1,6 +1,6 @@
 package edu.cs544.colab.equipment.controller;
 
-import edu.cs544.colab.equipment.domain.Equipment;
+import edu.cs544.colab.equipment.domain.AbstractEquipment;
 import edu.cs544.colab.equipment.service.IEquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,13 +20,13 @@ import javax.validation.constraints.NotNull;
 public class EquipmentController {
 
     @Autowired
-    private Equipment equipment;
+    private AbstractEquipment equipment;
 
     @Autowired
     private IEquipmentService equipmentService;
 
     @PostMapping(value = "/equipments")
-    public void createEquipment(@RequestBody @NotNull @Valid Equipment equipment){
+    public void createEquipment(@RequestBody @NotNull @Valid AbstractEquipment equipment){
         equipmentService.addEquipment(equipment);
     }
 

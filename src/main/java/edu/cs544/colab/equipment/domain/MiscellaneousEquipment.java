@@ -1,5 +1,6 @@
 package edu.cs544.colab.equipment.domain;
 
+import edu.cs544.colab.office.domain.Office;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Component;
 
@@ -51,5 +52,15 @@ public class MiscellaneousEquipment extends AbstractEquipment{
     @Override
     public void setName(String name) {
         super.setName(name);
+    }
+
+    @Override
+    public Office getOffice() {
+        return super.getOffice();
+    }
+
+    @Override
+    public void setOffice(Office office) {
+        super.setOffice(office);
     }
 }

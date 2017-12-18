@@ -1,7 +1,7 @@
 package edu.cs544.colab.office.domain;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import edu.cs544.colab.equipment.domain.Equipment;
+import edu.cs544.colab.equipment.domain.AbstractEquipment;
 import edu.cs544.colab.office.enums.OfficeStatus;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Component;
@@ -36,8 +36,7 @@ public class Office {
     @Enumerated(value = EnumType.STRING)
     private OfficeStatus status;
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "office")
-    @JsonDeserialize()
-    private List<Equipment> equipment;
+    private List<AbstractEquipment> equipment;
 
     public Office(){
 
@@ -85,11 +84,11 @@ public class Office {
         this.status = status;
     }
 
-    public List<Equipment> getEquipment() {
+    public List<AbstractEquipment> getEquipment() {
         return equipment;
     }
 
-    public void setEquipment(List<Equipment> equipment) {
+    public void setEquipment(List<AbstractEquipment> equipment) {
         this.equipment = equipment;
     }
 
