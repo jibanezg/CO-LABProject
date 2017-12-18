@@ -2,11 +2,11 @@ package edu.cs544.colab.client.domain;
 
 import java.util.List;
 
-import edu.cs544.colab.rental.BaseEntity;
-import edu.cs544.colab.rental.domain.Rental;
-
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+
+import edu.cs544.colab.rental.BaseEntity;
+import edu.cs544.colab.rental.domain.Rental;
 
 @Entity
 public class Client extends BaseEntity {

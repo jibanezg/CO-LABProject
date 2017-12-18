@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import edu.cs544.colab.equipment.domain.Equipment;
 import edu.cs544.colab.office.enums.OfficeStatus;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.validation.Valid;
@@ -16,6 +17,7 @@ import java.util.List;
  * Created by Grimg on 12/15/2017.
  */
 @Entity
+@Component
 public class Office {
 
     @Id @GeneratedValue(generator="system-uuid")

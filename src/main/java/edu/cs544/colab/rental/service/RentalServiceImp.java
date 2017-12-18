@@ -22,7 +22,7 @@ public class RentalServiceImp implements RentalService{
 	
 	@Override
 	public boolean isAvailableOffice(String officeId) {
-		Office office = officeDAO.getOne(officeId);
+		Office office = (Office) officeDAO.getOne(officeId);
 		return office.getStatus() == OfficeStatus.FOR_LEASING ? true : false;
 	}
 	
