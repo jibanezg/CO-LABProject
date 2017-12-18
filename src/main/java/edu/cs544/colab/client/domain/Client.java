@@ -13,11 +13,13 @@ import javax.persistence.OneToMany;
 @Entity
 public class Client extends BaseEntity {
 	
-	String name;
-	Location address;
+	private String name;
+	private Location address;
+	private Billing billInfo;
+	
 	
 	@OneToMany // (mappedBy="rental.id")
-	List<Office> rentals;
+	private List<Office> rentals;
 	
 	public String getName() {
 		return name;
@@ -41,5 +43,12 @@ public class Client extends BaseEntity {
 	public void addRental(Office rental) {
 		this.rentals.add(rental);
 	}
+	public Billing getBillInfo() {
+		return billInfo;
+	}
+	public void setBillInfo(Billing billInfo) {
+		this.billInfo = billInfo;
+	}
 
+	
 }
