@@ -7,16 +7,19 @@ import javax.persistence.*;
 /**
  * Created by Grimg on 12/15/2017.
  */
+
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
-public abstract class Equipment {
+public interface Equipment {
 
     @Id
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
-    protected String id;
-    protected int quantity;
-    protected String description;
-
+    String getId();
+    void setId(String id);
+    String getDescription();
+    void setDescription(String description);
+    int getQuantity();
+    void setQuantity(int quantity);
+    String getName();
+    void setName(String name);
 }

@@ -4,11 +4,14 @@ import edu.cs544.colab.office.domain.Office;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Created by Grimg on 12/15/2017.
  */
 @Repository
-public interface OfficeDAO extends JpaRepository<Office, String> {
+public interface OfficeDAO<T extends Office> extends JpaRepository<T, String> {
 
-    Office save(Office office);
+    T save(T office);
+    List<T> findAll();
 }
