@@ -1,6 +1,8 @@
 package edu.cs544.colab.equipment.domain;
 
+import edu.cs544.colab.office.domain.Office;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
@@ -8,47 +10,57 @@ import javax.persistence.*;
  * Created by Grimg on 12/16/2017.
  */
 @Entity
+@Component
+@DiscriminatorValue(value = "Miscellaneous")
 public class MiscellaneousEquipment extends AbstractEquipment{
-    @Id
-    @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
-    //@Override
+
+    @Override
     public String getId() {
-        return null;
+        return super.getId();
     }
 
-    //@Override
+    @Override
     public void setId(String id) {
-
+        super.setId(id);
     }
 
-    //@Override
+    @Override
     public String getDescription() {
-        return null;
+        return super.getDescription();
     }
 
-    //@Override
+    @Override
     public void setDescription(String description) {
-
+        super.setDescription(description);
     }
 
-    //@Override
+    @Override
     public int getQuantity() {
-        return 0;
+        return super.getQuantity();
     }
 
-    //@Override
+    @Override
     public void setQuantity(int quantity) {
-
+        super.setQuantity(quantity);
     }
 
-    //@Override
+    @Override
     public String getName() {
-        return null;
+        return super.getName();
     }
 
-    //@Override
+    @Override
     public void setName(String name) {
+        super.setName(name);
+    }
 
+    @Override
+    public Office getOffice() {
+        return super.getOffice();
+    }
+
+    @Override
+    public void setOffice(Office office) {
+        super.setOffice(office);
     }
 }
