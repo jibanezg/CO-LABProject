@@ -22,6 +22,9 @@ public class ServiceController {
     @Autowired
     private IOfficeService officeService;
 
+    @Autowired
+    private Office office;
+
     @PostMapping(value = "/offices", consumes = {MediaType.APPLICATION_JSON_VALUE})
     public void publishOfficeAsJson(@RequestBody @NotNull @Valid Office office, BindingResult result){
         officeService.publishOffice(office);
@@ -35,10 +38,17 @@ public class ServiceController {
         return "officeSuccess";
     }
 
-    @GetMapping(value = "/office")
+    @GetMapping(value = "/AddOffice")
     public ModelAndView showOfficeView(ModelAndView model){
-        model.addObject(new Office());
-        model.setViewName("office");
+        model.addObject(office);
+        model.setViewName("officeAdd");
+        return model;
+    }
+
+    @GetMapping(value = "/ListOffice")
+    public ModelAndView showOfficeListView(ModelAndView model){
+        model.addObject("officeList",officeService.find());
+        model.setViewName("officeList");
         return model;
     }
 
