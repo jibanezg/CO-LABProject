@@ -1,17 +1,19 @@
 package edu.cs544.colab.office.controller;
 
-import edu.cs544.colab.office.domain.Office;
-import edu.cs544.colab.office.service.IOfficeService;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
+import edu.cs544.colab.office.domain.Office;
+import edu.cs544.colab.office.service.IOfficeService;
 
 /**
  * Created by Grimg on 12/15/2017.

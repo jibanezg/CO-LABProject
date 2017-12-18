@@ -1,55 +1,21 @@
 <!DOCTYPE HTML>
-<html xmlns="http://www.w3.org/1999/xhtml" 
-    xmlns:th="http://www.thymeleaf.org" 
-    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<title>k</title> 
-</head>
-<head>
-<title>Spring Boot Thymeleaf Hello World Example</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
-<link rel="stylesheet" type="text/css"
-	href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
-
-<link rel="stylesheet" th:href="@{/css/main.css}"
-	href="../../css/main.css" />
-
+    <title>Rental creation</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-
-	<nav class="navbar navbar-inverse">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">Spring Boot</a>
-			</div>
-			<div id="navbar" class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#about">About</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-
-	<div class="container">
-
-		<div class="starter-template">
-			<h1>Spring Boot Web Thymeleaf Example</h1>
-			<h2>
-				<span th:text="'Message: ' + ${message}"></span>
-			</h2>
-		</div>
-
-	</div>
-	<!-- /.container -->
-
-	<script type="text/javascript"
-		src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<h1>Form</h1>
+ <form action="#" th:action="@{/rents}" th:object="${rental}" method="post">
+    <p>Rent from: <input type="text" th:field="*{rentFrom}" /></p>   
+    <p>Rent to: <input type="text" th:field="*{rentTo}" /></p>
+    <p>Security Deposit: <input type="text" th:field="*{contract.securityDeposit}" /></p>
+    <p>Type of contract: <input type="text" th:field="*{contract.type}" /></p>
+    <select th:field="*{type}">
+        <option th:each="optionStatus : ${T(edu.cs544.colab.rental.ContractType).values()}" th:value="${optionStatus.name()}" th:text="${optionStatus.toString()}"></option>
+    </select>  -->
+ 
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p> 
+ </form> 
 </body>
 </html>

@@ -1,16 +1,22 @@
 package edu.cs544.colab.rental.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import org.springframework.stereotype.Component;
 
 import edu.cs544.colab.client.domain.Client;
 import edu.cs544.colab.office.domain.Office;
 import edu.cs544.colab.rental.BaseEntity;
 
 @Entity
+@Component
 public class Rental extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 	private Date rentFrom;
@@ -18,9 +24,12 @@ public class Rental extends BaseEntity {
 	@ManyToOne
 	private Client client;
 	@OneToOne
-	private Contract contract;
+	private Contract contract = new Contract();
 	@ManyToOne
 	private Office office;
+	
+	@OneToMany(mappedBy="rental")
+	private List<Bill> bills = new ArrayList<>();
 	
 	public Date getRentFrom() {
 		return rentFrom;
@@ -51,6 +60,12 @@ public class Rental extends BaseEntity {
 	}
 	public void setOffice(Office office) {
 		this.office = office;
+	}
+	public List<Bill> getBills() {
+		return bills;
+	}
+	public void setBills(List<Bill> bills) {
+		this.bills = bills;
 	}
 	
 }
