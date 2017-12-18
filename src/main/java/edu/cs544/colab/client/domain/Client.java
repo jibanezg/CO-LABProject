@@ -10,7 +10,10 @@ import edu.cs544.colab.rental.domain.Rental;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import org.springframework.stereotype.Component;
+
 @Entity
+@Component
 public class Client extends BaseEntity {
 	
 	private String name;
