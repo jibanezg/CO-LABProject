@@ -23,6 +23,8 @@ public class Office {
     @Id @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String id;
+    @NotNull
+    private String name;
     @Min(value = 1)
     private double price;
     @Embedded
@@ -33,8 +35,7 @@ public class Office {
     @NotNull
     @Enumerated(value = EnumType.STRING)
     private OfficeStatus status;
-    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    @JoinColumn(name = "officeId")
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "office")
     @JsonDeserialize()
     private List<Equipment> equipment;
 
@@ -90,5 +91,13 @@ public class Office {
 
     public void setEquipment(List<Equipment> equipment) {
         this.equipment = equipment;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -1,5 +1,6 @@
 package edu.cs544.colab.equipment.domain;
 
+import edu.cs544.colab.office.domain.Office;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -22,4 +23,6 @@ public interface Equipment {
     void setQuantity(int quantity);
     String getName();
     void setName(String name);
+    Office getOffice();
+    void setOffice(Office office);
 }
