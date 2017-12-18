@@ -1,9 +1,11 @@
 package edu.cs544.colab.rental.Dao;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface RentalDao {
-	Object getObjectById(Object obj,int id);
-	List<Object> getObjectsByQuery(String query);
+import edu.cs544.colab.rental.domain.Rental;
+
+public interface RentalDao extends JpaRepository<Rental, String>{
+	/*Object getObjectById(Object obj,int id);
+	List<Object> getObjectsByQuery(String query);*/
 
 }

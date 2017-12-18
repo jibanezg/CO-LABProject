@@ -2,8 +2,11 @@ package edu.cs544.colab.rental.service;
 
 import org.springframework.stereotype.Service;
 
+import edu.cs544.colab.rental.domain.Rental;
+
 @Service
 public interface RentalService {
 	
-	boolean isAvailableOffice(int officeId);
+	boolean isAvailableOffice(String officeId);
+	String addRental(Rental rental);
 }

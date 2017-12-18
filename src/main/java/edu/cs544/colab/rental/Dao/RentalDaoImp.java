@@ -1,6 +1,5 @@
-package edu.cs544.colab.rental.Dao;
+/*package edu.cs544.colab.rental.Dao;
 
-import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -34,5 +33,7 @@ public class RentalDaoImp implements RentalDao{
 	public List<Object> getObjectsByQuery(String query) {
 		return sessionFactory.getCurrentSession().createQuery(query).list();
 	}
+
 	
 }
+*/

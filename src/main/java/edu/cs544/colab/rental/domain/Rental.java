@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-import edu.cs544.colab.client.Client;
+import edu.cs544.colab.client.domain.Client;
 import edu.cs544.colab.office.domain.Office;
 import edu.cs544.colab.rental.BaseEntity;
 
@@ -37,14 +37,20 @@ public class Rental extends BaseEntity {
 	public Client getClient() {
 		return client;
 	}
-	public void setClient(Client client) {
-		this.client = client;
+	public void setClient(Client client2) {
+		this.client = client2;
 	}
 	public Contract getContract() {
 		return contract;
 	}
 	public void setContract(Contract contract) {
 		this.contract = contract;
+	}
+	public Office getOffice() {
+		return office;
+	}
+	public void setOffice(Office office) {
+		this.office = office;
 	}
 	
 }
