@@ -13,5 +13,5 @@ import java.util.List;
 public interface OfficeDAO<T extends Office> extends JpaRepository<T, String> {
 
     T save(T office);
-    List<T> find();
+    List<T> findAll();
 }

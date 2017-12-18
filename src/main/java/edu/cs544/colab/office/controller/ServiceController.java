@@ -47,7 +47,7 @@ public class ServiceController {
 
     @GetMapping(value = "/ListOffice")
     public ModelAndView showOfficeListView(ModelAndView model){
-        model.addObject("officeList",officeService.find());
+        model.addObject("officeList",officeService.retrieveAllOffice());
         model.setViewName("officeList");
         return model;
     }

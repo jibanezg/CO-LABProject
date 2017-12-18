@@ -27,7 +27,7 @@ public class ServiceOffice<T> implements IOfficeService<T> {
     }
 
     @Override
-    public List<T> find() {
+    public List<T> retrieveAllOffice() {
         return officeDao.findAll();
     }
 }
