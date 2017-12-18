@@ -1,5 +1,6 @@
 package edu.cs544.colab.client.domain;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import edu.cs544.colab.office.domain.Location;
@@ -23,6 +24,11 @@ public class Client extends BaseEntity {
 	
 	@OneToMany // (mappedBy="rental.id")
 	private List<Office> rentals;
+	
+	public Client() {
+		rentals = new LinkedList<Office>();
+		address = new Location();
+	}
 	
 	public String getName() {
 		return name;

@@ -2,6 +2,7 @@ package edu.cs544.colab.client.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,5 +30,11 @@ public class ClientController {
 	public ModelAndView addClient(ModelAndView model) {
 		model.setViewName("addClient");
 		return model;
+	}
+	
+	@PostMapping(value = "/addClient")
+	public String saveClient(Client client, BindingResult result) {
+		clientService.addClient(client);
+		return "clientDetails";
 	}
 }
