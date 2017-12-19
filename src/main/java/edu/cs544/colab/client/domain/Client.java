@@ -3,6 +3,7 @@ package edu.cs544.colab.client.domain;
 import java.util.LinkedList;
 import java.util.List;
 
+import edu.cs544.colab.client.domain.Billing;
 import edu.cs544.colab.office.domain.Location;
 import edu.cs544.colab.office.domain.Office;
 import edu.cs544.colab.rental.BaseEntity;
@@ -28,6 +29,7 @@ public class Client extends BaseEntity {
 	public Client() {
 		rentals = new LinkedList<Office>();
 		address = new Location();
+		billInfo = new Billing();
 	}
 	
 	public String getName() {
