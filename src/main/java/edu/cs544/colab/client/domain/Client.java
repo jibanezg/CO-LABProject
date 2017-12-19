@@ -23,7 +23,7 @@ public class Client extends BaseEntity {
 	private Billing billInfo;
 	
 	
-	@OneToMany // (mappedBy="rental.id")
+	@OneToMany // (mappedBy="client")
 	private List<Office> rentals;
 	
 	public Client() {
