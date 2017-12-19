@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Office creation</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Add Equipment</h1>
+<form action="#" th:action="@{/equipments/__${equipment.officeId}__}" th:object="${equipment}" method="post">
+    <p>Name: <input type="text" th:field="*{name}" /></p>
+    <p>Quantity: <input type="text" th:field="*{quantity}" /></p>
+    <p>Description: <input type="text" th:field="*{description}" /></p>
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+</body>
+</html>

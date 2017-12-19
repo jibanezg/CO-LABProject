@@ -23,16 +23,11 @@ public class Office {
     @Id @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String id;
-    @NotNull
     private String name;
-    @Min(value = 1)
     private double price;
     @Embedded
-    @NotNull
-    @Valid
     private Location location;
     private String description;
-    @NotNull
     @Enumerated(value = EnumType.STRING)
     private OfficeStatus status;
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "office")

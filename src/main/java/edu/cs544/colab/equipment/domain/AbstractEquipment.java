@@ -2,8 +2,11 @@ package edu.cs544.colab.equipment.domain;
 
 import edu.cs544.colab.office.domain.Office;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by Grimg on 12/15/2017.
@@ -20,7 +23,7 @@ public abstract class AbstractEquipment {
     private int quantity;
     private String name;
     private String description;
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinColumn(name = "officeId")
     private Office office;
 
