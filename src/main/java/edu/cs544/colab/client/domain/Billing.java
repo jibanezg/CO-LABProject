@@ -1,15 +1,16 @@
 package edu.cs544.colab.client.domain;
 
-import java.util.Date;
-
-import javax.persistence.Entity;
-
 import org.springframework.stereotype.Component;
 
 import edu.cs544.colab.rental.BaseEntity;
-@Entity
-@Component
-public class Billing extends BaseEntity {
+import java.util.Date;
+
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+
+@Embeddable
+public class Billing {
+
 	private static final long serialVersionUID = 1L;
 	
 	private double amount = 0d;
@@ -18,4 +19,7 @@ public class Billing extends BaseEntity {
 	private String bankRoutingNumber;
 	private String accountNumber;
 
+	public Billing() {
+		super();
+	}
 }

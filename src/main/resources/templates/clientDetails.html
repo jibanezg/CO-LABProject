@@ -3,39 +3,30 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<title>Add a new Client</title>
+<title>Client Details</title>
 </head>
 <body>
-	<form action="../client/${client.id}" method="post">
+	
 		<div>
-			Name: <input type="text" name="name" value="${client.name}" />
+			Name: <span th:text="${client.name}" ></span>
 		</div>
 		<div>
 			Address: <br/>
-			<label>Street:</label><input type="text" name="street" value="${client.address.street}" /> <br/> 
-			<label>City:</label><input type="text" name="city" value="${client.address.city}" /> 
-			<label>State:</label><input type="text" name="state" value="${client.address.state}" /> 
-			<label>ZipCode:</label><input type="text" name="zipcode" value="${client.address.zipCode}" /> <br/>
+			Street:<span th:text="${client.address.street}" ></span> <br/> 
+			City:<span th:text="${client.address.city}" > </span>
+			State:<span th:text="${client.address.state}" > </span>
+			ZipCode:<span th:text="${client.address.zipCode}" ></span> <br/>
 		</div>
 		<div>
 			Active Rentals:
-			<ul>
-				<c:forEach var="rental" items="${client.rentals}">
-					<li><label>Rental Id:</label><input type="text" name="rentalid" value="${rental.id}" />
-					<label>Rental Description:</label>
-					<input type="text" name="rentaldescr value="${rental.description}" />
-					</li>
-				</c:forEach>
+			<ul th:each="rental : *{rentals}">
+				<li>Rental Id:<span th:text="${rental.id}" ></span>
+				Description:<span th:text="${rental.description}" ></span>
+				</li>
 			</ul>
 		</div>
 		<div>
-			Billing info:<br/>
-			<label>Billing:</label><input type="text" name="billing" value="${client.price}" />
+			Billing info: <span th:text="${client.billInfo.bankName}" ></span>
 		</div>
-		<input type="submit" value="update"/>
-	</form>
-	<form action="delete?clientId=${client.id}" method="post">
-		<button type="submit">Delete</button>
-	</form>
 </body>
 </html>

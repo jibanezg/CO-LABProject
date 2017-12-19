@@ -6,7 +6,9 @@ import javax.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+
 import org.springframework.ui.Model;
+
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -81,8 +83,7 @@ public class RentalController {
 	    long monthsInYear = ChronoUnit.MONTHS.between(LocalDate.now(rental.getRentFrom().getTime()), rental.getRentTo());
 	    total = monthsInYear*office.getPrice();
 	}*/
-	
-	
+
     public static ModelAndView method(ModelAndView model){
         model.addObject(bill);
         model.setViewName("rentalSuccess");

@@ -1,5 +1,6 @@
 package edu.cs544.colab.rental.domain;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -19,6 +20,7 @@ import edu.cs544.colab.rental.BaseEntity;
 @Component
 public class Rental extends BaseEntity {
 	private static final long serialVersionUID = 1L;
+
 	@NotNull
 	private Date rentFrom;
 	@NotNull
@@ -28,21 +30,22 @@ public class Rental extends BaseEntity {
 	@Embedded
 	private Contract contract;
 	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+
 	private Office office;
 	
 	/*@OneToMany(mappedBy="rental")
 	private List<Bill> bills = new ArrayList<>();*/
 	
-	public Date getRentFrom() {
+	public LocalDate getRentFrom() {
 		return rentFrom;
 	}
-	public void setRentFrom(Date rentFrom) {
+	public void setRentFrom(LocalDate rentFrom) {
 		this.rentFrom = rentFrom;
 	}
-	public Date getRentTo() {
+	public LocalDate getRentTo() {
 		return rentTo;
 	}
-	public void setRentTo(Date rentTo) {
+	public void setRentTo(LocalDate rentTo) {
 		this.rentTo = rentTo;
 	}
 	public Client getClient() {

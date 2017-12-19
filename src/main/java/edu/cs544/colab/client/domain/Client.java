@@ -3,6 +3,8 @@ package edu.cs544.colab.client.domain;
 import java.util.LinkedList;
 import java.util.List;
 
+import edu.cs544.colab.client.domain.Billing;
+
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
@@ -21,12 +23,14 @@ public class Client extends BaseEntity {
 	private Billing billInfo;
 	
 	
-	@OneToMany // (mappedBy="rental.id")
+	@OneToMany // (mappedBy="client")
 	private List<Office> rentals;
 	
 	public Client() {
+		super();
 		rentals = new LinkedList<Office>();
 		address = new Location();
+		billInfo = new Billing();
 	}
 	
 	public String getName() {
