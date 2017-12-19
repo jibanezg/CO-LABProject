@@ -14,6 +14,10 @@ import javax.persistence.*;
 @DiscriminatorValue(value = "Miscellaneous")
 public class MiscellaneousEquipment extends AbstractEquipment{
 
+    public MiscellaneousEquipment(){
+        super();
+    }
+
     @Override
     public String getId() {
         return super.getId();
