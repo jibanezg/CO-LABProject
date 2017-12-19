@@ -3,9 +3,12 @@ package edu.cs544.colab.rental.domain;
 import java.time.LocalDate;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.stereotype.Component;
 
@@ -17,13 +20,17 @@ import edu.cs544.colab.rental.BaseEntity;
 @Component
 public class Rental extends BaseEntity {
 	private static final long serialVersionUID = 1L;
-	private LocalDate rentFrom;
-	private LocalDate rentTo; 
-	@ManyToOne
+
+	@NotNull
+	private Date rentFrom;
+	@NotNull
+	private Date rentTo; 
+	@ManyToOne(cascade= {CascadeType.ALL})
 	private Client client;
 	@Embedded
 	private Contract contract;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+
 	private Office office;
 	
 	/*@OneToMany(mappedBy="rental")

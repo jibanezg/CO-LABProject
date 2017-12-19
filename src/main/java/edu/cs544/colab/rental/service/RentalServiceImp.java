@@ -29,8 +29,13 @@ public class RentalServiceImp implements RentalService{
 	
 	@Override
 	public String addRental(Rental rental) {
+
 		/*if(!isAvailableOffice(rental.getOffice().getId()))
 			return "THIS OFFICE IN NOT AVALIABLE NOW";*/
+
+		if(rental.getOffice().getStatus()!=OfficeStatus.FOR_LEASING)
+			return "THIS OFFICE IN NOT AVALIABLE NOW";
+
 		rentalDao.save(rental);
 		return"rentalSuccess";
 	}
@@ -40,4 +45,10 @@ public class RentalServiceImp implements RentalService{
 		rentalDao.save(bill);
 		return "showBill";
 	}
+	
+	@Override
+	public Office getOfficeById(String id) {
+		return (Office) officeDAO.findOne(id);
+	}
+
 }

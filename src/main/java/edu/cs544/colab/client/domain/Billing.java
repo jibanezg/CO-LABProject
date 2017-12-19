@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 
 @Embeddable
 public class Billing {
+
 	private static final long serialVersionUID = 1L;
 	
 	private double amount = 0d;
