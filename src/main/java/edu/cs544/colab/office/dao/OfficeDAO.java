@@ -10,8 +10,9 @@ import java.util.List;
  * Created by Grimg on 12/15/2017.
  */
 @Repository
-public interface OfficeDAO<T extends Office> extends JpaRepository<T, String> {
+public interface OfficeDAO extends JpaRepository<Office, String> {
 
-    T save(T office);
-    List<T> findAll();
+    Office save(Office office);
+    List<Office> findAll();
+    Office findOfficeById(String id);
 }

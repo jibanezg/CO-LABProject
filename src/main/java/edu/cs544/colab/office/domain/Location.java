@@ -10,13 +10,9 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Location {
 
-    @NotBlank
     private String street;
-    @NotBlank
     private String zipCode;
-    @NotBlank
     private String city;
-    @NotBlank
     private String state;
 
     public String getStreet() {
