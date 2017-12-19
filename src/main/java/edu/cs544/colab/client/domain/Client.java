@@ -27,6 +27,7 @@ public class Client extends BaseEntity {
 	private List<Office> rentals;
 	
 	public Client() {
+		super();
 		rentals = new LinkedList<Office>();
 		address = new Location();
 		billInfo = new Billing();

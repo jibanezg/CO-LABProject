@@ -14,4 +14,7 @@ public class Billing extends BaseEntity {
 	private String bankRoutingNumber;
 	private String accountNumber;
 
+	public Billing() {
+		super();
+	}
 }
