@@ -1,11 +1,11 @@
 package edu.cs544.colab.rental.domain;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 import org.springframework.stereotype.Component;
 
@@ -17,8 +17,8 @@ import edu.cs544.colab.rental.BaseEntity;
 @Component
 public class Rental extends BaseEntity {
 	private static final long serialVersionUID = 1L;
-	private Date rentFrom;
-	private Date rentTo; 
+	private LocalDate rentFrom;
+	private LocalDate rentTo; 
 	@ManyToOne
 	private Client client;
 	@Embedded
@@ -29,16 +29,16 @@ public class Rental extends BaseEntity {
 	/*@OneToMany(mappedBy="rental")
 	private List<Bill> bills = new ArrayList<>();*/
 	
-	public Date getRentFrom() {
+	public LocalDate getRentFrom() {
 		return rentFrom;
 	}
-	public void setRentFrom(Date rentFrom) {
+	public void setRentFrom(LocalDate rentFrom) {
 		this.rentFrom = rentFrom;
 	}
-	public Date getRentTo() {
+	public LocalDate getRentTo() {
 		return rentTo;
 	}
-	public void setRentTo(Date rentTo) {
+	public void setRentTo(LocalDate rentTo) {
 		this.rentTo = rentTo;
 	}
 	public Client getClient() {
