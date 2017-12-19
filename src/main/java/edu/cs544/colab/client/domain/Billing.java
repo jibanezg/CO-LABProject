@@ -21,4 +21,46 @@ public class Billing {
 	public Billing() {
 		super();
 	}
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	public Date getDueDate() {
+		return dueDate;
+	}
+
+	public void setDueDate(Date dueDate) {
+		this.dueDate = dueDate;
+	}
+
+	public String getBankName() {
+		return bankName;
+	}
+
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
+	}
+
+	public String getBankRoutingNumber() {
+		return bankRoutingNumber;
+	}
+
+	public void setBankRoutingNumber(String bankRoutingNumber) {
+		this.bankRoutingNumber = bankRoutingNumber;
+	}
+
+	public String getAccountNumber() {
+		return accountNumber;
+	}
+
+	public void setAccountNumber(String accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+	
+	
 }
