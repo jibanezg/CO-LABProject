@@ -11,5 +11,4 @@ public interface IOfficeService <T>{
 
     void publishOffice(T office);
     List<T> retrieveAllOffice();
-    Office getOfficeById(String id);
 }

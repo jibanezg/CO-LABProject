@@ -1,4 +1,4 @@
-package edu.cs544.colab.office.controller;
+/*package edu.cs544.colab.office.controller;
 
 import edu.cs544.colab.office.domain.Office;
 import edu.cs544.colab.office.service.IOfficeService;
@@ -13,9 +13,9 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-/**
+*//**
  * Created by Grimg on 12/15/2017.
- */
+ *//*
 @Controller
 public class OfficeController {
 
@@ -53,3 +53,4 @@ public class OfficeController {
     }
 
 }
+*/
