@@ -1,6 +1,7 @@
 /*package edu.cs544.colab.office.controller;
 
 import edu.cs544.colab.office.domain.Office;
+import edu.cs544.colab.office.dto.OfficeDTO;
 import edu.cs544.colab.office.service.IOfficeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorController;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 *//**
  * Created by Grimg on 12/15/2017.
@@ -23,33 +25,66 @@ public class OfficeController {
     private IOfficeService officeService;
 
     @Autowired
-    private Office office;
+    private OfficeDTO office;
 
     @PostMapping(value = "/offices", consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public void publishOfficeAsJson(@RequestBody @NotNull @Valid Office office, BindingResult result){
-        officeService.publishOffice(office);
+    public void publishOfficeAsJson(@RequestBody @NotNull @Valid OfficeDTO office, BindingResult result){
+        Office entity = new Office();
+        entity.setName(office.getName());
+        entity.setDescription(office.getDescription());
+        entity.setPrice(office.getPrice());
+        entity.getLocation().setCity(office.getCity());
+        entity.getLocation().setState(office.getState());
+        entity.getLocation().setStreet(office.getStreet());
+        entity.getLocation().setZipCode(office.getZipCode());
+        entity.setStatus(office.getStatus());
+
+        officeService.publishOffice(entity);
     }
 
     @PostMapping(value = "/offices", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-    public String publishOfficeAsFormUrlEncoded(@NotNull @Valid Office office, BindingResult result){
+    public String publishOfficeAsFormUrlEncoded(@NotNull @Valid OfficeDTO office, BindingResult result){
+        Office entity = new Office();
+        entity.setName(office.getName());
+        entity.setDescription(office.getDescription());
+        entity.setPrice(office.getPrice());
+        entity.getLocation().setCity(office.getCity());
+        entity.getLocation().setState(office.getState());
+        entity.getLocation().setStreet(office.getStreet());
+        entity.getLocation().setZipCode(office.getZipCode());
+        entity.setStatus(office.getStatus());
 
+        officeService.publishOffice(entity);
+        return "redirect:officeSuccess";
+    }
 
-        officeService.publishOffice(office);
-        return "officeSuccess";
+    @GetMapping(value = "/offices", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody List<Office> listOfficeAsJson(){
+        return officeService.retrieveAllOffice();
     }
 
     @GetMapping(value = "/AddOffice")
-    public ModelAndView showOfficeView(ModelAndView model){
-        model.addObject(office);
+    public ModelAndView showAddOfficeView(ModelAndView model){
+        model.addObject("office",office);
         model.setViewName("officeAdd");
         return model;
     }
 
     @GetMapping(value = "/ListOffice")
     public ModelAndView showOfficeListView(ModelAndView model){
-        model.addObject("officeList",officeService.retrieveAllOffice());
-        model.setViewName("officeList");
+        List<Office> officeList=officeService.retrieveAllOffice();
+        if(officeList == null || officeList.size()<=0){
+            model.setViewName("redirect:/AddOffice");
+        }else {
+            model.addObject("officeList",officeList);
+            model.setViewName("officeList");
+        }
         return model;
+    }
+
+    @GetMapping(value = "/officeSuccess")
+    public String officeSuccess(){
+        return "officeSuccess";
     }
 
 }
