@@ -6,6 +6,7 @@ import edu.cs544.colab.office.service.IOfficeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -42,6 +43,7 @@ public class OfficeController {
         officeService.publishOffice(entity);
     }
 
+    @Secured("hasAuthority('ADMIN')")
     @PostMapping(value = "/offices", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public String publishOfficeAsFormUrlEncoded(@NotNull @Valid OfficeDTO office, BindingResult result){
         Office entity = new Office();
@@ -64,6 +66,7 @@ public class OfficeController {
     }
 
     @GetMapping(value = "/AddOffice")
+    @Secured("hasAuthority('ADMIN')")
     public ModelAndView showAddOfficeView(ModelAndView model){
         model.addObject("office",office);
         model.setViewName("officeAdd");
