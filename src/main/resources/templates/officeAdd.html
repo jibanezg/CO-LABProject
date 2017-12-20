@@ -10,10 +10,10 @@
     <p>Name: <input type="text" th:field="*{name}" /></p>
     <p>Price: <input type="text" th:field="*{price}" /></p>
     <p>Description: <input type="text" th:field="*{description}" /></p>
-    <p>Street: <input type="text" th:field="*{street}" /></p>
-    <p>Zip Code: <input type="text" th:field="*{zipCode}" /></p>
-    <p>City: <input type="text" th:field="*{city}" /></p>
-    <p>State: <input type="text" th:field="*{state}" /></p>
+    <p>Street: <input type="text" th:field="*{location.street}" /></p>
+    <p>Zip Code: <input type="text" th:field="*{location.zipCode}" /></p>
+    <p>City: <input type="text" th:field="*{location.city}" /></p>
+    <p>State: <input type="text" th:field="*{location.state}" /></p>
 
     <p>Status: <select th:field="*{status}">
         <option th:each="optionStatus : ${T(edu.cs544.colab.office.enums.OfficeStatus).values()}" th:value="${optionStatus.name()}" th:text="${optionStatus.toString()}"></option>
