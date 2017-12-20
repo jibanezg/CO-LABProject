@@ -7,10 +7,10 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
 
 import org.springframework.stereotype.Component;
 
+import edu.cs544.colab.client.domain.Billing;
 import edu.cs544.colab.client.domain.Client;
 import edu.cs544.colab.office.domain.Office;
 import edu.cs544.colab.rental.BaseEntity;
@@ -19,9 +19,7 @@ import edu.cs544.colab.rental.BaseEntity;
 @Component
 public class Rental extends BaseEntity {
 	private static final long serialVersionUID = 1L;
-	@NotNull
 	private Date rentFrom;
-	@NotNull
 	private Date rentTo; 
 	@ManyToOne(cascade= {CascadeType.ALL})
 	private Client client;
@@ -29,7 +27,8 @@ public class Rental extends BaseEntity {
 	private Contract contract;
 	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
 	private Office office;
-	
+	@Embedded
+	private Billing bill;
 	/*@OneToMany(mappedBy="rental")
 	private List<Bill> bills = new ArrayList<>();*/
 	
@@ -62,5 +61,11 @@ public class Rental extends BaseEntity {
 	}
 	public void setOffice(Office office) {
 		this.office = office;
+	}
+	public Billing getBill() {
+		return bill;
+	}
+	public void setBill(Billing bill) {
+		this.bill = bill;
 	}
 }

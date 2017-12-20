@@ -16,15 +16,16 @@ public class Contract{
 		this.securityDeposit = securityDeposit;
 	}
 	public ContractType getType() {
+		
+		return type;
+	}
+	public void setType(ContractType type) {
+		this.type = type;
 		if(ContractType.DAILY == type)
 			setSecurityDeposit(20);
 		if(ContractType.MONTHLY == type)
 			setSecurityDeposit(50);
 		if(ContractType.YEARLY == type)
 			setSecurityDeposit(80);
-		return type;
-	}
-	public void setType(ContractType type) {
-		this.type = type;
 	}
 }

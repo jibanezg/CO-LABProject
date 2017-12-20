@@ -1,7 +1,5 @@
 package edu.cs544.colab.office.service;
 
-import edu.cs544.colab.office.domain.Office;
-
 import java.util.List;
 
 import edu.cs544.colab.office.domain.Office;

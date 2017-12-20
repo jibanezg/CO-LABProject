@@ -1,34 +1,32 @@
 package edu.cs544.colab.client.domain;
 
 import org.springframework.stereotype.Component;
-
-import edu.cs544.colab.rental.BaseEntity;
 import java.util.Date;
-
 import javax.persistence.Embeddable;
-import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 
 @Embeddable
-public class Billing {
-	private static final long serialVersionUID = 1L;
-	
-	private double amount = 0d;
+public class Billing{
+	@NotNull
 	private Date dueDate;
+	@NotNull
+	private String securityCode;
 	private String bankName;
 	private String bankRoutingNumber;
+	@NotNull
 	private String accountNumber;
-
+	
 	public Billing() {
 		super();
 	}
-
-	public double getAmount() {
-		return amount;
+	
+	public String getSecurityCode() {
+		return securityCode;
+	}
+	public void setSecurityCode(String securityCode) {
+		this.securityCode = securityCode;
 	}
 
-	public void setAmount(double amount) {
-		this.amount = amount;
-	}
 
 	public Date getDueDate() {
 		return dueDate;
