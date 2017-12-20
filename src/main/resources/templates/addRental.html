@@ -2,20 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>Rental Request</title>
+	<div th:replace="fragments/header :: header"/>
 </head>
 <body >
 <h1>Rental Details</h1>
  <form action="#" th:action="@{/rents}" th:object="${rental}" method="post"  >
-   <p>Rent from: <input type="datetime-local"  class="datetime" th:field="*{rentFrom}"
+   <p>Rent from: <input type="datetime-local" pattern="\d{1,2}/\d{1,2}/\d{4}" class="datetime" th:field="*{rentFrom}"
 		required="required"/> </p> 
-   <p>Rent to: <input type="text" th:field="*{rentTo}"  required="required"/></p>
+   <p>Rent to: <input type="text" th:field="*{rentTo}"  required="required" pattern="\d{1,2}/\d{1,2}/\d{4}"/></p>
    <p>Type of contract:
    <select th:field="*{contract.type}">
         <option th:each="optionStatus : ${T(edu.cs544.colab.rental.ContractType).values()}" th:value="${optionStatus.name()}" th:text="${optionStatus.toString()}"></option>
     </select>  
     </p>
 <h1>Bank Information</h1>
-    <p>Due Date: <input th:field="*{bill.dueDate}"/> </p>
+    <p>Expiration Date: <input th:field="*{bill.dueDate}" pattern="\d{1,2}/\d{1,2}/\d{4}"/> </p>
     <p>Account Number: <input th:field="*{bill.accountNumber}"/></p>
     <p>Security Code: <input th:field="*{bill.securityCode}"/></p>
     <p>Bank Routing Number: <input th:field="*{bill.bankRoutingNumber}" /></p>

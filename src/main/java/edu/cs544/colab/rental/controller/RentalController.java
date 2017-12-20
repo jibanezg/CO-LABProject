@@ -1,5 +1,8 @@
 package edu.cs544.colab.rental.controller;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -33,16 +36,15 @@ public class RentalController {
 	@Autowired
 	private Office office;
 	
-	private double total = 0d;
-	
 	@RequestMapping(name="/isAvailableOffice{id}")
 	private boolean isAvailableOffice(@PathVariable String officeId) {
 		return rentalService.isAvailableOffice(officeId);
 		}
 	
 	 @PostMapping(value = "/rents" , consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-	 public String addRental(@NotNull @Valid Rental rental , BindingResult result, ModelAndView model){
+	 public String addRental(@NotNull @Valid Rental rental , BindingResult result, Model model){
 		 rental.setOffice(office);
+		 model.addAttribute("total",calculateTotal(rental));
 		 return rentalService.addRental(rental);
 	    }
 	 
@@ -76,8 +78,14 @@ public class RentalController {
 	        model.setViewName("rentalList");
 	        return model;
 	    }
-	/*public void calculateTotal() {
-	    long monthsInYear = ChronoUnit.MONTHS.between(LocalDate.now(rental.getRentFrom().getTime()), rental.getRentTo());
-	    total = monthsInYear*office.getPrice();
-	}*/
+	public double calculateTotal(Rental rental) {
+		Calendar startCalendar = new GregorianCalendar();
+		startCalendar.setTime(rental.getRentFrom());
+		Calendar endCalendar = new GregorianCalendar();
+		endCalendar.setTime(rental.getRentTo());
+
+		int diffYear = endCalendar.get(Calendar.YEAR) - startCalendar.get(Calendar.YEAR);
+		int diffMonth = diffYear * 12 + endCalendar.get(Calendar.MONTH) - startCalendar.get(Calendar.MONTH);
+	    return diffMonth*office.getPrice();
+	}
 }

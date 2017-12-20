@@ -3,8 +3,10 @@
 <head>
     <title>Rental Order</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <div th:replace="fragments/header :: header"/>
 </head>
 <body>
 <h1>congratulation ! You Order Is Done </h1>
+<td><p>Price: </p></td><td th:text="${total}"></td>
 </body>
 </html>
