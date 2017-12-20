@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import edu.cs544.colab.client.domain.Billing;
 import edu.cs544.colab.office.domain.Office;
+import edu.cs544.colab.office.service.IOfficeService;
 import edu.cs544.colab.rental.domain.Rental;
 import edu.cs544.colab.rental.service.RentalService;
 
@@ -24,14 +24,14 @@ public class RentalController {
 	
 	@Autowired
 	private RentalService rentalService;
+	
+	@Autowired
+	private IOfficeService officeService;
 	@Autowired
 	private Rental rental;
 	
 	@Autowired
 	private Office office;
-	
-	@Autowired
-	private static Billing bill = new Billing();
 	
 	private double total = 0d;
 	
@@ -41,7 +41,7 @@ public class RentalController {
 		}
 	
 	 @PostMapping(value = "/rents" , consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-	 public String addRental(@NotNull @Valid Rental rental , BindingResult result){
+	 public String addRental(@NotNull @Valid Rental rental , BindingResult result, ModelAndView model){
 		 rental.setOffice(office);
 		 return rentalService.addRental(rental);
 	    }
@@ -50,42 +50,34 @@ public class RentalController {
     public String showRental(Model model){
 		Rental rental = new Rental();
         model.addAttribute("rental", rental);
+        //model.addAttribute("bill",bill);
         return "addRental";
     }
 	
 	@GetMapping(value="/toRent/{officeId}")
 	    public ModelAndView add(@PathVariable("officeId") String officeId,ModelAndView model) {
-		office = rentalService.getOfficeById(officeId);
+		office = officeService.findOfficeById(officeId);
 		model.addObject(rental);
 		model.setViewName("addRental");
 		return model;
 	 }
 	
-	/*@PostMapping(value = "/createBill", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-	public ModelAndView createBill(Billing bill ,BindingResult result ,ModelAndView model) {
-		model.setViewName("showBill");
-		model.addObject("bill",new Billing());
-		 //rentalService.createbill(bill);
-		 return model;*/
+	 /*@PostMapping(value = "/createBill", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+	 public String createBill(Billing bill, BindingResult result ,ModelAndView model){
+		 model.setViewName("showBill");
+		 model.addObject("bill",new Billing());
+		 return rentalService.createbill(bill);
+	 }*/
 		 
-		 
-		 @PostMapping(value = "/createBill", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-		 public String createBill(Billing bill, BindingResult result ,ModelAndView model){
-			 model.setViewName("showBill");
-			 model.addObject("bill",new Billing());
-			 return rentalService.createbill(bill);
-		    }
-		 
-		 
+	 
+	 @GetMapping(value = "/ListRental")
+	    public ModelAndView showOfficeListView(ModelAndView model){
+	        model.addObject("listRental",rentalService.getRentalList());
+	        model.setViewName("rentalList");
+	        return model;
+	    }
 	/*public void calculateTotal() {
 	    long monthsInYear = ChronoUnit.MONTHS.between(LocalDate.now(rental.getRentFrom().getTime()), rental.getRentTo());
 	    total = monthsInYear*office.getPrice();
 	}*/
-	
-	
-    public static ModelAndView method(ModelAndView model){
-        model.addObject(bill);
-        model.setViewName("rentalSuccess");
-        return model;
-    }
 }
