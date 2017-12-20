@@ -15,5 +15,5 @@ public interface IOfficeService {
     void publishOffice(Office office);
     List<Office> retrieveAllOffice();
     Office findOfficeById(String officeId);
-    
+   
 }

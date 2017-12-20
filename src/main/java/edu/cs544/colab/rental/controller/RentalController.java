@@ -1,10 +1,12 @@
 package edu.cs544.colab.rental.controller;
 
-import java.time.temporal.ChronoUnit;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +24,6 @@ public class RentalController {
 	
 	@Autowired
 	private RentalService rentalService;
-	
 	@Autowired
 	private Rental rental;
 	
@@ -39,21 +40,22 @@ public class RentalController {
 		return rentalService.isAvailableOffice(officeId);
 		}
 	
-	 @PostMapping(value = "/rents", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-	 public String addRental(Rental rental , BindingResult result ,ModelAndView model){
+	 @PostMapping(value = "/rents" , consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+	 public String addRental(@NotNull @Valid Rental rental , BindingResult result){
+		 rental.setOffice(office);
 		 return rentalService.addRental(rental);
 	    }
 	 
 	@GetMapping(value ="/addRental")
-    public ModelAndView showRental(ModelAndView model){
-        model.addObject(rental);
-        model.setViewName("addRental");
-        return model;
+    public String showRental(Model model){
+		Rental rental = new Rental();
+        model.addAttribute("rental", rental);
+        return "addRental";
     }
 	
-	@GetMapping(value="/toRent/{officeId}" ,consumes ={MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-	    public ModelAndView add(@PathVariable String officeId,ModelAndView model) {
-		// rental.setOffice(officeService.getOfficeById(officeId));
+	@GetMapping(value="/toRent/{officeId}")
+	    public ModelAndView add(@PathVariable("officeId") String officeId,ModelAndView model) {
+		office = rentalService.getOfficeById(officeId);
 		model.addObject(rental);
 		model.setViewName("addRental");
 		return model;
@@ -75,13 +77,13 @@ public class RentalController {
 		    }
 		 
 		 
-	public void calculateTotal(Rental r) {
-	    long monthsInYear = ChronoUnit.MONTHS.between(r.getRentFrom(), r.getRentTo());
+	/*public void calculateTotal() {
+	    long monthsInYear = ChronoUnit.MONTHS.between(LocalDate.now(rental.getRentFrom().getTime()), rental.getRentTo());
 	    total = monthsInYear*office.getPrice();
-	}
+	}*/
 	
 	
-    public static ModelAndView xx(ModelAndView model){
+    public static ModelAndView method(ModelAndView model){
         model.addObject(bill);
         model.setViewName("rentalSuccess");
         return model;

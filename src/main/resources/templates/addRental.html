@@ -1,53 +1,20 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8"/>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-	<meta name="keywords" content="footer, basic, centered, links" />
-
 	<title>Rental Request</title>
-
-	<link rel="stylesheet" href="css/demo.css"/>
-	<link rel="stylesheet" href="css/footer-basic-centered.css"/>
 </head>
 <body >
 <h1>Rental Request</h1>
  <form action="#" th:action="@{/rents}" th:object="${rental}" method="post"  >
    <p>Rent from: <input type="datetime-local"  class="datetime" th:field="*{rentFrom}"
-		required="required" /> </p> 
-		
+		required="required"/> </p> 
    <p>Rent to: <input type="text" th:field="*{rentTo}"  required="required"/></p>
-   <!-- <p>Security Deposit: <input type="text" th:field="*{contract.securityDeposit}"  required="required"/></p> -->
    <p>Type of contract:
    <select th:field="*{contract.type}">
         <option th:each="optionStatus : ${T(edu.cs544.colab.rental.ContractType).values()}" th:value="${optionStatus.name()}" th:text="${optionStatus.toString()}"></option>
     </select>  
     </p>
-    <input type="submit" class="body.is-navPanel-visible #navPanel" value="Submit" /> <input type="reset" value="Reset" />
+    <input type="submit"  value="Submit" /> <input type="reset" value="Reset" />
  </form> 
- 
- <footer class="footer-basic-centered">
-
-			<p class="footer-company-motto">COLAB</p>
-
-			<p class="footer-links">
-				<a href="#">Home</a>
-				·
-				<a href="#">Sign In</a>
-				·
-				<a href="#">Sign Up</a>
-				·
-				<a href="#">About</a>
-				·
-				<a href="#">Offices</a>
-				·
-				<a href="#">Contact</a>
-			</p>
-
-			<p class="footer-company-name">COLAB &copy; 2017</p>
-
-		</footer>
- 
 </body>
 </html>

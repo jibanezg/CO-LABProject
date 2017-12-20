@@ -9,5 +9,9 @@ import edu.cs544.colab.client.domain.Client;
 public interface ClientDAO extends JpaRepository<Client,String> {
 	
 	Client save(Client client);
+	
+	Client findById(String id);
+	
+	void deleteById(int id);
 
 }

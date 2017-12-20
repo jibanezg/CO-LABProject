@@ -11,7 +11,6 @@ import java.util.List;
  */
 @Repository
 public interface OfficeDAO extends JpaRepository<Office, String> {
-
     Office save(Office office);
     List<Office> findAll();
     Office findOfficeById(String id);
