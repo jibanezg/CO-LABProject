@@ -24,7 +24,7 @@ public class Rental extends BaseEntity {
 	private Client client;
 	@Embedded
 	private Contract contract;
-	@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.PERSIST,CascadeType.REFRESH}, fetch = FetchType.LAZY)
+	@ManyToOne
 	private Office office;
 	@Embedded
 	private Billing bill;
