@@ -2,7 +2,9 @@
 
 <body>
 <div th:fragment="header">
-    <a th:href="@{/logout}">Logout</a>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
 </div>
 
 </body>
