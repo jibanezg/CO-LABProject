@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Rental Order</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Confirmation Form</h1>
+
+<form action="#" th:action="@{/createBill}" th:object="${office}" method="post">
+    <p>Name: <output th:field="*{name}"> </output></p>
+    <p>Total Price: <output th:field="*{price}"> </output></p>
+    <p>Description: <output th:field="*{description}" > </output></p>
+    <p>City: <output  th:field="*{location.city}" ></output></p>
+    <p>State: <output th:field="*{location.state}" ></output></p>
+    <p><input type="submit" value="Confirm" /> <input type="reset" value="Reset" /></p>
+    </form>
+    
+     <!-- <form action="#" th:action="@{/createBill}" th:object="${bill}" method="post">
+    <p>Amount: <input type="text" th:field="*{amount}" /></p>
+    <p>Account Number: <input type="text" th:field="*{accountNumber}" /></p>
+    <p>Due Date: <input type="text" th:field="*{dueDate}" /></p>
+    <p>security Number: <input type="text" th:field="*{bankName}" /></p>
+    <p><input type="submit" value="Confirm" /> <input type="reset" value="Reset" /></p>
+   </form> --> 
+</body>
+</html>

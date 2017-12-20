@@ -1,20 +1,14 @@
 package edu.cs544.colab.rental.domain;
 
-import javax.persistence.Entity;
+import javax.persistence.Embeddable;
 import javax.persistence.Enumerated;
-import javax.persistence.OneToOne;
 
-import edu.cs544.colab.rental.BaseEntity;
 import edu.cs544.colab.rental.ContractType;
-@Entity
-public class Contract extends BaseEntity{
-	private static final long serialVersionUID = 1L;
+@Embeddable
+public class Contract{
 	@Enumerated
 	private ContractType type;
 	private double securityDeposit;
-	@OneToOne
-	private Rental rental; 
-	
 	public double getSecurityDeposit() {
 		return securityDeposit;
 	}
@@ -22,16 +16,15 @@ public class Contract extends BaseEntity{
 		this.securityDeposit = securityDeposit;
 	}
 	public ContractType getType() {
+		if(ContractType.DAILY == type)
+			setSecurityDeposit(20);
+		if(ContractType.MONTHLY == type)
+			setSecurityDeposit(50);
+		if(ContractType.YEARLY == type)
+			setSecurityDeposit(80);
 		return type;
 	}
 	public void setType(ContractType type) {
 		this.type = type;
 	}
-	public Rental getRental() {
-		return rental;
-	}
-	public void setRental(Rental rental) {
-		this.rental = rental;
-	} 
-
 }

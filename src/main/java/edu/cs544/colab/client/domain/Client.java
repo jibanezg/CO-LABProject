@@ -3,13 +3,12 @@ package edu.cs544.colab.client.domain;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+
 import edu.cs544.colab.office.domain.Location;
 import edu.cs544.colab.office.domain.Office;
 import edu.cs544.colab.rental.BaseEntity;
-import edu.cs544.colab.rental.domain.Rental;
-
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 
 import org.springframework.stereotype.Component;
 
