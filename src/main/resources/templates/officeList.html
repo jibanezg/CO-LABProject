@@ -1,10 +1,19 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <title>Office creation</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <div th:replace="fragments/header :: header"/>
+
 </head>
 <body>
+
+<div sec:authorize="hasAuthority('ROLE_ADMIN')">
+    <form th:action="@{/AddOffice}" method="get">
+        <input type="submit" value="Add Office"/>
+    </form>
+</div>
 <table id="...">
 
     <tbody>
@@ -34,9 +43,11 @@
                 <tr>
                     <td><a th:href="@{/ListEquipment/__${office.id}__}">See equipment</a></td>
                 </tr>
-                <tr>
-                    <td><a th:href="@{/AddEquipment/__${office.id}__}">Add Equipment</a></td>
-                </tr> 
+                <div sec:authorize="hasAuthority('ROLE_ADMIN')">
+                    <tr>
+                        <td><a th:href="@{/AddEquipment/__${office.id}__}">Add Equipment</a></td>
+                    </tr>
+                </div>
                 <tr>
                     <td><a th:href="@{/toRent/__${office.id}__}">For Rent</a></td>
                 </tr>
