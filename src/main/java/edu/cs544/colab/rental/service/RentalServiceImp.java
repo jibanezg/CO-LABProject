@@ -15,7 +15,6 @@ import edu.cs544.colab.rental.Dao.RentalDao;
 import edu.cs544.colab.rental.domain.Rental;
 
 @Service
-@Transactional
 public class RentalServiceImp implements RentalService{
 	@Autowired 
 	private RentalDao rentalDao;
@@ -26,13 +25,16 @@ public class RentalServiceImp implements RentalService{
 	
 	
 	@Override
+	@Transactional
 	public boolean isAvailableOffice(String officeId) {
 		Office office = (Office) officeDAO.getOne(officeId);
 		return office.getStatus() == OfficeStatus.FOR_LEASING ? true : false;
 	}
 	
 	@Override
+	@Transactional
 	public String addRental(Rental rental) {
+		//rentalDao.flush();
 		rentalDao.save(rental);
 		return"rentalSuccess";
 	}
@@ -44,6 +46,7 @@ public class RentalServiceImp implements RentalService{
 	}*/
 	
 	@Override
+	@Transactional
 	public List<Rental> getRentalList() {
 		return rentalDao.findAll();
 	}

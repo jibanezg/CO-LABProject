@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import edu.cs544.colab.office.domain.Office;
 import edu.cs544.colab.office.service.IOfficeService;
+import edu.cs544.colab.rental.ContractType;
 import edu.cs544.colab.rental.domain.Rental;
 import edu.cs544.colab.rental.service.RentalService;
 
@@ -40,14 +42,14 @@ public class RentalController {
 	private boolean isAvailableOffice(@PathVariable String officeId) {
 		return rentalService.isAvailableOffice(officeId);
 		}
-	
+	@Secured("USER")
 	 @PostMapping(value = "/rents" , consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
 	 public String addRental(@NotNull @Valid Rental rental , BindingResult result, Model model){
 		 rental.setOffice(office);
 		 model.addAttribute("total",calculateTotal(rental));
 		 return rentalService.addRental(rental);
 	    }
-	 
+	@Secured("USER") 
 	@GetMapping(value ="/addRental")
     public String showRental(Model model){
 		Rental rental = new Rental();
@@ -55,7 +57,7 @@ public class RentalController {
         //model.addAttribute("bill",bill);
         return "addRental";
     }
-	
+	@Secured("USER")
 	@GetMapping(value="/toRent/{officeId}")
 	    public ModelAndView add(@PathVariable("officeId") String officeId,ModelAndView model) {
 		office = officeService.findOfficeById(officeId);
@@ -71,14 +73,15 @@ public class RentalController {
 		 return rentalService.createbill(bill);
 	 }*/
 		 
-	 
+	@Secured("ADMIN")
 	 @GetMapping(value = "/ListRental")
-	    public ModelAndView showOfficeListView(ModelAndView model){
+	    public ModelAndView showRentalListView(ModelAndView model){
 	        model.addObject("listRental",rentalService.getRentalList());
 	        model.setViewName("rentalList");
 	        return model;
 	    }
 	public double calculateTotal(Rental rental) {
+		if(rental.getContract().getType()!=ContractType.DAILY) {
 		Calendar startCalendar = new GregorianCalendar();
 		startCalendar.setTime(rental.getRentFrom());
 		Calendar endCalendar = new GregorianCalendar();
@@ -86,6 +89,9 @@ public class RentalController {
 
 		int diffYear = endCalendar.get(Calendar.YEAR) - startCalendar.get(Calendar.YEAR);
 		int diffMonth = diffYear * 12 + endCalendar.get(Calendar.MONTH) - startCalendar.get(Calendar.MONTH);
-	    return diffMonth*office.getPrice();
+	    return diffMonth*office.getPrice();}
+		else
+			return office.getPrice()/30;
+		
 	}
 }
