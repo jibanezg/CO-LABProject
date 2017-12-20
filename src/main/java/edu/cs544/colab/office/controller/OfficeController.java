@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +35,7 @@ public class OfficeController {
         officeService.publishOffice(officeDtoToEntity(office));
     }
 
-    @Secured("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(value = "/offices", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public String publishOfficeAsFormUrlEncoded(@NotNull @Valid OfficeDTO office, BindingResult result){
 
@@ -64,7 +65,7 @@ public class OfficeController {
     }
 
     @GetMapping(value = "/AddOffice")
-    @Secured("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ModelAndView showAddOfficeView(ModelAndView model){
         model.addObject("office",office);
         model.setViewName("officeAdd");
