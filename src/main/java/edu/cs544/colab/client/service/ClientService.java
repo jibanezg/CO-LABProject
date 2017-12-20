@@ -23,8 +23,8 @@ public class ClientService implements IClientService {
 	}
 
 	@Override
-	public void deleteClient(String clientId) {
-		// TODO Auto-generated method stub
+	public void deleteClient(int clientId) {
+		clientDao.deleteById(clientId);
 
 	}
 
@@ -36,14 +36,13 @@ public class ClientService implements IClientService {
 
 	@Override
 	public Collection<Client> getClients() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return clientDao.findAll();
 	}
 
 	@Override
-	public Client getClient(String clientId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Client getClient(int clientId) {
+		return clientDao.findById(clientId);
 	}
 
 }
