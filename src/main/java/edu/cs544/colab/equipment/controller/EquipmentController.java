@@ -34,13 +34,19 @@ public class EquipmentController {
     @Autowired
     private IOfficeService officeService;
 
-    @PostMapping(value = "/equipments")
-    public void createEquipmentAsJson(@RequestBody @NotNull @Valid AbstractEquipment equipment){
-        equipmentService.addEquipment(equipment);
+    @PostMapping(value = "/equipments", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void createEquipmentAsJson(@RequestBody @NotNull @Valid EquipmentDTO equipment){
+        equipmentService.addEquipment(equipmentDtoToEntity(equipment));
     }
 
     @PostMapping(value = "/equipments/{officeId}", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.TEXT_HTML_VALUE})
     public String createEquipmentAsFormUrlEncoded(@NotNull @Valid EquipmentDTO equipment,@PathVariable String officeId, BindingResult result){
+
+        equipmentService.addEquipment(equipmentDtoToEntity(equipment,officeId));
+        return "redirect:/equipmentSuccess";
+    }
+
+    private AbstractEquipment equipmentDtoToEntity(EquipmentDTO equipment, String officeId){
         AbstractEquipment entity = new MiscellaneousEquipment();
         entity.setDescription(equipment.getDescription());
         entity.setName(equipment.getName());
@@ -50,8 +56,22 @@ public class EquipmentController {
         //Office office = new Office();
         //office.setId(officeId);
         entity.setOffice(office);
-        equipmentService.addEquipment(entity);
-        return "redirect:/equipmentSuccess";
+
+        return entity;
+    }
+
+    private AbstractEquipment equipmentDtoToEntity(EquipmentDTO equipment){
+        AbstractEquipment entity = new MiscellaneousEquipment();
+        entity.setDescription(equipment.getDescription());
+        entity.setName(equipment.getName());
+        entity.setQuantity(equipment.getQuantity());
+        Office office = officeService.findOfficeById(equipment.getOfficeId());
+        //*******************PREGUNTAR AL PROFESOR SI ESTO ES NORMAL O SI BIEN SE DEBE HACER ALGO CON HIBERNATE*******************
+        //Office office = new Office();
+        //office.setId(officeId);
+        entity.setOffice(office);
+
+        return entity;
     }
 
     @Secured("hasAuthority('ADMIN')")
