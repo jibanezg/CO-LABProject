@@ -45,6 +45,9 @@ public class EquipmentController {
         entity.setName(equipment.getName());
         entity.setQuantity(equipment.getQuantity());
         Office office = officeService.findOfficeById(officeId);
+        //*******************PREGUNTAR AL PROFESOR SI ESTO ES NORMAL O SI BIEN SE DEBE HACER ALGO CON HIBERNATE*******************
+        //Office office = new Office();
+        //office.setId(officeId);
         entity.setOffice(office);
         equipmentService.addEquipment(entity);
         return "redirect:/equipmentSuccess";

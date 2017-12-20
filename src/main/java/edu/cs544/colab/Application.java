@@ -43,8 +43,7 @@ public class Application extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/OfficeList")
+                .logoutSuccessUrl("/ListOffice")
                 .clearAuthentication(true)
                 .invalidateHttpSession(true)
                 .permitAll();
@@ -58,5 +57,7 @@ public class Application extends WebSecurityConfigurerAdapter {
                 .and()
                 .withUser("manager").password("password").roles("MANAGER");
     }
+
+
 
 }

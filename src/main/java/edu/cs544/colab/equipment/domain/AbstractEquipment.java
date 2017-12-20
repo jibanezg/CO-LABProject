@@ -23,7 +23,7 @@ public abstract class AbstractEquipment {
     private int quantity;
     private String name;
     private String description;
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "officeId")
     private Office office;
 
