@@ -1,5 +1,7 @@
 package edu.cs544.colab.client.controller;
 
+import java.util.Collection;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,16 @@ public class ClientController {
 	
 	@Autowired
     private Client client;
+	
+	@Autowired
+	private Collection<Client> clients;
+	
+	@GetMapping(value = "/listClients")
+	public ModelAndView listClients(ModelAndView model) {
+		clients = clientService.getClients();
+		model.addObject(clients);
+		return model;
+	}
 	
 	@GetMapping(value = "/clientDetails")
 	public ModelAndView showClientDetails(ModelAndView model) {

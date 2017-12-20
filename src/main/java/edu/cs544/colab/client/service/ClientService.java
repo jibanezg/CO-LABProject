@@ -36,8 +36,8 @@ public class ClientService implements IClientService {
 
 	@Override
 	public Collection<Client> getClients() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return clientDao.findAll();
 	}
 
 	@Override
