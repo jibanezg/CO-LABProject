@@ -9,6 +9,7 @@ import javax.persistence.OneToMany;
 import edu.cs544.colab.office.domain.Location;
 import edu.cs544.colab.office.domain.Office;
 import edu.cs544.colab.rental.BaseEntity;
+import edu.cs544.colab.rental.domain.Billing;
 
 import org.springframework.stereotype.Component;
 
