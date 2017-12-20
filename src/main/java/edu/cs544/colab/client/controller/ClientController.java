@@ -44,14 +44,14 @@ public class ClientController {
 	}
 	
 	@GetMapping(value="/clientDetails/{id}")
-	public String getClient(@PathVariable String id, ModelAndView model) {
+	public String getClient(@PathVariable int id, ModelAndView model) {
 		client = clientService.getClient(id);
 		model.addObject(client);
 		return "clientDetails";
 	}
 	
 	@PostMapping(value="/update/{id}")
-	public String update(Client client, @PathVariable String id) {
+	public String update(Client client, @PathVariable int id) {
 		client = clientService.getClient(id);
 		clientService.updateClient(client);
 		return "clientDetails";

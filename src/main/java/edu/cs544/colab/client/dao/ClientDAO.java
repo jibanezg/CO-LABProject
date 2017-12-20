@@ -10,7 +10,7 @@ public interface ClientDAO extends JpaRepository<Client,String> {
 	
 	Client save(Client client);
 	
-	Client findById(String id);
+	Client findById(int id);
 	
 	void deleteById(int id);
 

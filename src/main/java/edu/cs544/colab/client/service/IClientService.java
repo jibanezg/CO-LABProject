@@ -9,5 +9,5 @@ public interface IClientService {
 	public void deleteClient(int clientId);
 	public void updateClient(Client client);
 	public Collection<Client> getClients();
-	public Client getClient(String clientId);
+	public Client getClient(int clientId);
 }

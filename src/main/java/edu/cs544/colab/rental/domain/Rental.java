@@ -10,7 +10,6 @@ import javax.persistence.ManyToOne;
 
 import org.springframework.stereotype.Component;
 
-import edu.cs544.colab.client.domain.Billing;
 import edu.cs544.colab.client.domain.Client;
 import edu.cs544.colab.office.domain.Office;
 import edu.cs544.colab.rental.BaseEntity;
@@ -25,7 +24,7 @@ public class Rental extends BaseEntity {
 	private Client client;
 	@Embedded
 	private Contract contract;
-	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.PERSIST,CascadeType.REFRESH}, fetch = FetchType.LAZY)
 	private Office office;
 	@Embedded
 	private Billing bill;

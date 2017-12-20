@@ -30,7 +30,7 @@ public class Office {
     private String description;
     @Enumerated(value = EnumType.STRING)
     private OfficeStatus status;
-    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "office")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "office")
     private List<AbstractEquipment> equipment;
 
     public Office(){

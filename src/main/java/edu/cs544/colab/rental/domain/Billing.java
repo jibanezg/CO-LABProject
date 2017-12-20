@@ -1,19 +1,24 @@
-package edu.cs544.colab.client.domain;
+package edu.cs544.colab.rental.domain;
 
 import org.springframework.stereotype.Component;
 import java.util.Date;
 import javax.persistence.Embeddable;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.CreditCardNumber;
 
 @Embeddable
 public class Billing{
 	@NotNull
-	private Date dueDate;
+	@Future
+	private Date expirationDate;
 	@NotNull
 	private String securityCode;
 	private String bankName;
 	private String bankRoutingNumber;
 	@NotNull
+	@CreditCardNumber
 	private String accountNumber;
 	
 	public Billing() {
@@ -29,11 +34,11 @@ public class Billing{
 
 
 	public Date getDueDate() {
-		return dueDate;
+		return expirationDate;
 	}
 
-	public void setDueDate(Date dueDate) {
-		this.dueDate = dueDate;
+	public void setDueDate(Date expirationDate) {
+		this.expirationDate = expirationDate;
 	}
 
 	public String getBankName() {
