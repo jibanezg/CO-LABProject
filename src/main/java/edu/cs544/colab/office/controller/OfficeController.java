@@ -30,22 +30,20 @@ public class OfficeController {
 
     @PostMapping(value = "/offices", consumes = {MediaType.APPLICATION_JSON_VALUE})
     public void publishOfficeAsJson(@RequestBody @NotNull @Valid OfficeDTO office, BindingResult result){
-        Office entity = new Office();
-        entity.setName(office.getName());
-        entity.setDescription(office.getDescription());
-        entity.setPrice(office.getPrice());
-        entity.getLocation().setCity(office.getCity());
-        entity.getLocation().setState(office.getState());
-        entity.getLocation().setStreet(office.getStreet());
-        entity.getLocation().setZipCode(office.getZipCode());
-        entity.setStatus(office.getStatus());
 
-        officeService.publishOffice(entity);
+        officeService.publishOffice(officeDtoToEntity(office));
     }
 
     @Secured("hasAuthority('ADMIN')")
     @PostMapping(value = "/offices", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public String publishOfficeAsFormUrlEncoded(@NotNull @Valid OfficeDTO office, BindingResult result){
+
+        officeService.publishOffice(officeDtoToEntity(office));
+        return "redirect:officeSuccess";
+    }
+
+    private Office officeDtoToEntity(OfficeDTO office){
+
         Office entity = new Office();
         entity.setName(office.getName());
         entity.setDescription(office.getDescription());
@@ -56,8 +54,8 @@ public class OfficeController {
         entity.getLocation().setZipCode(office.getZipCode());
         entity.setStatus(office.getStatus());
 
-        officeService.publishOffice(entity);
-        return "redirect:officeSuccess";
+        return entity;
+
     }
 
     @GetMapping(value = "/offices", produces = MediaType.APPLICATION_JSON_VALUE)
