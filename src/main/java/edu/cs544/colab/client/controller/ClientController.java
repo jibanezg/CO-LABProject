@@ -32,6 +32,7 @@ public class ClientController {
 	public ModelAndView listClients(ModelAndView model) {
 		clients = clientService.getClients();
 		model.addObject(clients);
+		model.setViewName("clientList");
 		return model;
 	}
 	
